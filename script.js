@@ -14,24 +14,24 @@ $(document).ready(function(){
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Points: </td><td>${bs.points}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point attempts: </td><td>${bs.twoPointAttempts}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point made: </td><td>${bs.twoPointMade}</td></tr>`);
-                if (bs.twoPointPercentage === null){
-                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point percent: </td><td>0%</td></tr>`);
+                if (bs.twoPointPercentage === 'n/a'){
+                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point percent: </td><td>n/a</td></tr>`);
                 }else{
-                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point percent: </td><td>${parseInt(bs.twoPointPercentage)}%</td></tr>`);
+                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point percent: </td><td>${bs.twoPointPercentage}%</td></tr>`);
                 }
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point attempts: </td><td>${bs.threePointAttempts}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point made: </td><td>${bs.threePointMade}</td></tr>`);
-                if (bs.threePointPercentage === null){
-                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point percent: </td><td>0%</td></tr>`);
+                if (bs.threePointPercentage === 'n/a'){
+                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point percent: </td><td>n/a</td></tr>`);
                 }else{
-                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point percent: </td><td>${parseInt(bs.threePointPercentage)}%</td></tr>`);
+                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point percent: </td><td>${bs.threePointPercentage}%</td></tr>`);
                 }
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw attempts: </td><td>${bs.freeThrowAttempts}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw made: </td><td>${bs.freeThrowMade}</td></tr>`);
-                if (bs.freeThrowPercentage === null){
-                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw percent: </td><td>0%</td></tr>`);
+                if (bs.freeThrowPercentage === 'n/a'){
+                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw percent: </td><td>n/a</td></tr>`);
                 }else{
-                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw percent: </td><td>${parseInt(bs.freeThrowPercentage)}%</td></tr>`);
+                    $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw percent: </td><td>${bs.freeThrowPercentage}%</td></tr>`);
                 }
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Blocks: </td><td>${bs.blocks}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Fouls: </td><td>${bs.fouls}</td></tr>`);
