@@ -14,21 +14,21 @@ $(document).ready(function(){
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Points: </td><td>${bs.points}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point attempts: </td><td>${bs.twoPointAttempts}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point made: </td><td>${bs.twoPointMade}</td></tr>`);
-                if (bs.twoPointPercentage === 'n/a' || bs.twoPointPercentage === 'NaN'){
+                if (bs.twoPointPercentage === 'n/a' || bs.twoPointPercentage === 'NaN' || bs.twoPointPercentage === null){
                     $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point percent: </td><td>n/a</td></tr>`);
                 }else{
                     $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>2 point percent: </td><td>${bs.twoPointPercentage}%</td></tr>`);
                 }
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point attempts: </td><td>${bs.threePointAttempts}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point made: </td><td>${bs.threePointMade}</td></tr>`);
-                if (bs.threePointPercentage === 'n/a' || bs.threePointPercentage === 'NaN'){
+                if (bs.threePointPercentage === 'n/a' || bs.threePointPercentage === 'NaN' || bs.threePointPercentage === null){
                     $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point percent: </td><td>n/a</td></tr>`);
                 }else{
                     $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>3 point percent: </td><td>${bs.threePointPercentage}%</td></tr>`);
                 }
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw attempts: </td><td>${bs.freeThrowAttempts}</td></tr>`);
                 $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw made: </td><td>${bs.freeThrowMade}</td></tr>`);
-                if (bs.freeThrowPercentage === 'n/a' || bs.freeThrowPercentage === 'NaN'){
+                if (bs.freeThrowPercentage === 'n/a' || bs.freeThrowPercentage === 'NaN' || bs.freeThrowPercentage === null){
                     $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw percent: </td><td>n/a</td></tr>`);
                 }else{
                     $(`#${response[i]._id}`).append(`<tr class="${response[i]._id} stat"><td></td><td>Free throw percent: </td><td>${bs.freeThrowPercentage}%</td></tr>`);
