@@ -1,2 +1,13 @@
-table { margin:25px; }
-tr.stat { display: none; }
+.game_date {
+    display: none;
+    padding-left: 15px;
+    list-style-type: none
+}
+
+.game_details {
+    display: none;
+    padding-left: 30px;
+    list-style-type: none
+}
+
+
