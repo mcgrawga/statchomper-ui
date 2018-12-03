@@ -119,31 +119,25 @@ $(document).ready(function(){
                 }
                 let twoPointPercentage = 'n/a';
                 if (bs.twoPointPercentage !== 'n/a' && bs.twoPointPercentage !== 'NaN' && bs.twoPointPercentage !== null){
-                    twoPointPercentage = bs.twoPointPercentage;
+                    twoPointPercentage = `${Math.round(bs.twoPointPercentage)}%`;
                 }
                 let threePointPercentage = 'n/a';
                 if (bs.threePointPercentage !== 'n/a' && bs.threePointPercentage !== 'NaN' && bs.threePointPercentage !== null){
-                    threePointPercentage = bs.threePointPercentage;
+                    threePointPercentage = `${Math.round(bs.threePointPercentage)}%`;
                 }
                 let freeThrowPercentage = 'n/a';
                 if (bs.freeThrowPercentage !== 'n/a' && bs.freeThrowPercentage !== 'NaN' && bs.freeThrowPercentage !== null){
-                    freeThrowPercentage = bs.freeThrowPercentage;
+                    freeThrowPercentage = `${Math.round(bs.freeThrowPercentage)}%`;
                 }
                 $(`#game_list`).append(`<li class="game_date ${curPlayer}">
                     <a href="#" id="${response[i]._id}" class="game_detail_link">${response[i].datePlayed} vs. ${opponent}</a></li>
-                        <li class="game_details ${response[i]._id}">Points: ${bs.points}</li>
-                        <li class="game_details ${response[i]._id}">2 point attempts:: ${bs.twoPointAttempts}</li>
-                        <li class="game_details ${response[i]._id}">2 point made:: ${bs.twoPointMade}</li>
-                        <li class="game_details ${response[i]._id}">2 point percent:: ${twoPointPercentage}</li>
-                        <li class="game_details ${response[i]._id}">3 point attempts:: ${bs.threePointAttempts}</li>
-                        <li class="game_details ${response[i]._id}">3 point made:: ${bs.threePointMade}</li>
-                        <li class="game_details ${response[i]._id}">3 point percent:: ${threePointPercentage}</li>
-                        <li class="game_details ${response[i]._id}">Free throw attempts: ${bs.freeThrowAttempts}</li>
-                        <li class="game_details ${response[i]._id}">Free throw made: ${bs.freeThrowMade}</li>
-                        <li class="game_details ${response[i]._id}">Free throw percent: ${freeThrowPercentage}</li>
-                        <li class="game_details ${response[i]._id}">Blocks: ${bs.blocks}</li>
-                        <li class="game_details ${response[i]._id}">Fouls: ${bs.fouls}</li>
-                        <li class="game_details ${response[i]._id}">Steals: ${bs.steals}</li>`
+                    <li class="game_details ${response[i]._id}">Points: ${bs.points}</li>
+                    <li class="game_details ${response[i]._id}">2 point: ${bs.twoPointMade} for ${bs.twoPointAttempts} (${twoPointPercentage})</li>
+                    <li class="game_details ${response[i]._id}">3 point: ${bs.threePointMade} for ${bs.threePointAttempts} (${threePointPercentage})</li>
+                    <li class="game_details ${response[i]._id}">Free throws: ${bs.freeThrowMade} for ${bs.freeThrowAttempts} (${freeThrowPercentage})</li>
+                    <li class="game_details ${response[i]._id}">Blocks: ${bs.blocks}</li>
+                    <li class="game_details ${response[i]._id}">Fouls: ${bs.fouls}</li>
+                    <li class="game_details ${response[i]._id}">Steals: ${bs.steals}</li>`
                 );    
             }
         },
