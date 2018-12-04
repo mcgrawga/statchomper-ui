@@ -131,33 +131,40 @@ $(document).ready(function(){
                 }
                 $(`#game_list`).append(`<li class="game_date ${curPlayer}">
                     <a href="#" id="${response[i]._id}" class="game_detail_link">${response[i].datePlayed} vs. ${opponent}</a></li>
-                    <li class="game_details ${response[i]._id}">Points: ${bs.points}</li>
-                    <li class="game_details ${response[i]._id}">2 point: ${bs.twoPointMade} for ${bs.twoPointAttempts} (${twoPointPercentage})</li>
-                    <li class="game_details ${response[i]._id}">3 point: ${bs.threePointMade} for ${bs.threePointAttempts} (${threePointPercentage})</li>
-                    <li class="game_details ${response[i]._id}">Free throws: ${bs.freeThrowMade} for ${bs.freeThrowAttempts} (${freeThrowPercentage})</li>
-                    <li class="game_details ${response[i]._id}">Blocks: ${bs.blocks}</li>
-                    <li class="game_details ${response[i]._id}">Fouls: ${bs.fouls}</li>
-                    <li class="game_details ${response[i]._id}">Steals: ${bs.steals}</li>`
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Points: ${bs.points}</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Rebounds: ${bs.assists}</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Assists: ${bs.assists}</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Blocks: ${bs.blocks}</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Fouls: ${bs.fouls}</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Steals: ${bs.steals}</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Two-Pointers: ${bs.twoPointMade} for ${bs.twoPointAttempts} (${twoPointPercentage})</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Three-Pointers: ${bs.threePointMade} for ${bs.threePointAttempts} (${threePointPercentage})</li>
+                    <li class="game_details ${curPlayer}_details ${response[i]._id}">Freethrows: ${bs.freeThrowMade} for ${bs.freeThrowAttempts} (${freeThrowPercentage})</li>`
                 );    
             }
+            $('#loader').hide();
         },
         error: function (xhr, status) {
             $('body').append(`${status}`);
         }
     });
 
-    $(document).on( 'click', '.player, .game_detail_link', function() {
-        console.log(this.id);
+    $(document).on( 'click', '.player, .game_detail_link', function(e) {
+        //
+        //  If a <li> gets clicked and it is a player, and it is closing,
+        //  and it has open game details, be sure to close them.
+        //
+        var css_class = $(e.target).attr('class');
+        if (css_class == 'player'){
+            if ($(`.${this.id}`).is(':visible')) {
+                $(`.${this.id}_details`).each(function() {
+                    if ($(this).is(':visible')){
+                        $(this).toggle();
+                    }
+                });
+            }
+        }
+
         $(`.${this.id}`).toggle();
     });
-
-
-
-    // ON CLICK, HIDE OR SHOW GAME DETAILS
-    // $(document).on( 'click', '.game_link', function(){
-    //     console.log(this.id);
-    //     const id = this.id;
-    //     $(`.${id}`).toggle();
-    //     return false;
-    // });
 });
