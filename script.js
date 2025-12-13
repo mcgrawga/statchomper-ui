@@ -22,6 +22,7 @@ $(document).ready(function(){
                         <th>Blocks</th>
                         <th>Fouls</th>
                         <th>Steals</th>
+                        <th>Turnovers</th>
                         <th>Twopointers</th>
                         <th>Threepointers</th>
                         <th>Freethrows</th>
@@ -52,6 +53,7 @@ $(document).ready(function(){
                     <td>${bs.blocks}</td>
                     <td>${bs.fouls}</td>
                     <td>${bs.steals}</td>
+                    <td>${bs.turnovers}</td>
                     <td>${bs.twoPointMade} for ${bs.twoPointAttempts} (${twoPointPercentage})</td>
                     <td>${bs.threePointMade} for ${bs.threePointAttempts} (${threePointPercentage})</td>
                     <td>${bs.freeThrowMade} for ${bs.freeThrowAttempts} (${freeThrowPercentage})</td>`
