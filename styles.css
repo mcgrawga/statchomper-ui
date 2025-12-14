@@ -220,11 +220,10 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 12px;
+        padding: 6px 8px;
         border: 1px solid #e5eaf0;
         border-radius: 6px;
         background-color: #f8fafb;
-        gap: 12px;
     }
     
     .stat-label {
@@ -232,7 +231,6 @@ body {
         color: #64748b;
         font-weight: 500;
         white-space: nowrap;
-        flex-shrink: 0;
     }
     
     .stat-value {
@@ -240,7 +238,6 @@ body {
         color: #1a202c;
         font-weight: 600;
         white-space: nowrap;
-        text-align: right;
     }
     
     /* Make table cells more readable */
