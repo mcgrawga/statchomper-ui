@@ -67,6 +67,7 @@ $(document).ready(function(){
                 $(`#${curPlayer}_cards`).append(`
                     <div class="game-card">
                         <div class="game-header">
+                            <div class="game-player">${curPlayer}</div>
                             <div class="game-date">${response[i].datePlayed}</div>
                             <div class="game-opponent">vs. ${opponent}</div>
                         </div>
