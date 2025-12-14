@@ -154,7 +154,7 @@ $(document).ready(function(){
             
             if (cardCount >= 5) {
                 filterWrapper.show();
-                $(`#${escapedId}_filter`).val('').focus();
+                $(`#${escapedId}_filter`).val('');
             }
             
             // Add expanded class for chevron rotation
