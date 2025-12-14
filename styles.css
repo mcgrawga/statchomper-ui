@@ -54,7 +54,28 @@ body {
         min-height: 50px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         transition: all 0.2s ease;
+        position: relative;
+    }
+    
+    /* Add chevron indicator using CSS borders */
+    .player::after {
+        content: '';
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-right: 3px solid white;
+        border-bottom: 3px solid white;
+        transform: rotate(-45deg);
+        margin-left: 10px;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+    
+    /* Rotate chevron when expanded */
+    .player.expanded::after {
+        transform: rotate(45deg);
     }
     
     .player:active {
@@ -68,15 +89,38 @@ body {
         display: none !important;
     }
     
+    /* Filter input wrapper */
+    .filter-wrapper {
+        margin: 15px 0;
+    }
+    
+    .game-filter {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 1rem;
+        border: 2px solid #cbd5e1;
+        border-radius: 8px;
+        background-color: #ffffff;
+        color: #2d3748;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        box-sizing: border-box;
+    }
+    
+    .game-filter:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
+    }
+    
+    .game-filter::placeholder {
+        color: #94a3b8;
+    }
+    
     /* Show cards wrapper on mobile */
     .cards-wrapper {
         display: none;
         margin-bottom: 20px;
-        position: relative;
-        max-height: calc(1.5 * 380px); /* Show approximately 1.5 cards */
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
     }
     
     /* Custom scrollbar for cards wrapper */
@@ -105,7 +149,7 @@ body {
         margin-bottom: 15px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         overflow: hidden;
-        border: 2px solid #cbd5e1;
+        border: 1px solid #d1d9e2;
     }
     
     .game-card:last-child {
@@ -151,9 +195,9 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 6px 8px;
-        border: 1px solid #cbd5e1;
+        border: 1px solid #e5eaf0;
         border-radius: 6px;
-        background-color: #f1f5f9;
+        background-color: #f8fafb;
     }
     
     .stat-label {

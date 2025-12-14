@@ -12,6 +12,10 @@ $(document).ready(function(){
                     console.log(curPlayer);
                     curPlayer = response[i].player;
                     $(`body`).append(`<a href="#" id="${curPlayer}" class="player">${curPlayer}</a>`);    
+                    // Filter input
+                    $(`body`).append(`<div class="filter-wrapper" id="${curPlayer}_filter_wrapper" style="display:none;">
+                        <input type="text" class="game-filter" id="${curPlayer}_filter" placeholder="Filter games by date or opponent..." />
+                    </div>`);
                     // Desktop table
                     $(`body`).append(`<div class="table-wrapper"><table id="${curPlayer}_stats" class="table table-striped"></table></div>`);  
                     $(`#${curPlayer}_stats`).append(`<thead>
@@ -125,32 +129,71 @@ $(document).ready(function(){
 
     $(document).on( 'click', '.player', function(e) {
         console.log(this.id);
-        $(`#${this.id}_stats`).closest('.table-wrapper').toggle();
-        const cardsWrapper = $(`#${this.id}_cards`);
-        cardsWrapper.toggle();
+        const playerId = this.id;
         
-        // Check if there are more than 2 cards and add indicator
-        if (cardsWrapper.is(':visible')) {
+        // Escape special characters in ID for jQuery selector
+        const escapedId = playerId.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\\\$1');
+        
+        const cardsWrapper = $(`#${escapedId}_cards`);
+        const isCurrentlyOpen = cardsWrapper.is(':visible');
+        
+        // Close all other players' cards and filters
+        $('.table-wrapper').hide();
+        $('.cards-wrapper').hide();
+        $('.filter-wrapper').hide();
+        $('.player').removeClass('expanded');
+        
+        // If this player wasn't open, open it
+        if (!isCurrentlyOpen) {
+            $(`#${escapedId}_stats`).closest('.table-wrapper').show();
+            cardsWrapper.show();
+            
+            // Only show filter if there are 5 or more game cards
             const cardCount = cardsWrapper.find('.game-card').length;
-            if (cardCount > 2) {
-                cardsWrapper.addClass('has-more');
-                
-                // Remove the indicator when scrolled near bottom
-                cardsWrapper.on('scroll', function() {
-                    const scrollTop = $(this).scrollTop();
-                    const scrollHeight = $(this)[0].scrollHeight;
-                    const clientHeight = $(this)[0].clientHeight;
-                    
-                    if (scrollTop + clientHeight >= scrollHeight - 50) {
-                        $(this).removeClass('has-more');
-                    } else if (cardCount > 2) {
-                        $(this).addClass('has-more');
-                    }
-                });
+            const filterWrapper = $(`#${escapedId}_filter_wrapper`);
+            
+            if (cardCount >= 5) {
+                filterWrapper.show();
+                $(`#${escapedId}_filter`).val('').focus();
             }
+            
+            // Add expanded class for chevron rotation
+            $(this).addClass('expanded');
         }
         
         e.preventDefault();
+    });
+    
+    // Filter game cards based on input
+    $(document).on('input', '.game-filter', function() {
+        const filterId = $(this).attr('id');
+        const playerId = filterId.replace('_filter', '');
+        const filterText = $(this).val().toLowerCase().trim();
+        
+        console.log('Filter text:', filterText, 'Player ID:', playerId);
+        
+        // Escape special characters in ID for jQuery selector
+        const escapedId = playerId.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\\\$1');
+        
+        // Get all game cards for this player
+        const cards = $(`#${escapedId}_cards .game-card`);
+        console.log('Found cards:', cards.length);
+        
+        cards.each(function() {
+            const gameHeader = $(this).find('.game-header');
+            const dateText = gameHeader.find('.game-date').text().toLowerCase();
+            const opponentText = gameHeader.find('.game-opponent').text().toLowerCase().replace('vs.', '').trim();
+            
+            // Search in date and opponent (excluding "vs.")
+            const searchText = dateText + ' ' + opponentText;
+            console.log('Search text:', searchText);
+            
+            if (filterText === '' || searchText.includes(filterText)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
     });
     
     // Enable click-and-drag horizontal scrolling for tables
