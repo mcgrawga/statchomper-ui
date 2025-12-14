@@ -113,30 +113,33 @@ body {
     
     .game-stats {
         padding: 15px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 20px;
     }
     
     .stat-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid #f1f5f9;
-    }
-    
-    .stat-row:last-child {
-        border-bottom: none;
+        padding: 6px 8px;
+        border: 1px solid #f1f5f9;
+        border-radius: 6px;
+        background-color: #fafbfc;
     }
     
     .stat-label {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
         color: #64748b;
         font-weight: 500;
+        white-space: nowrap;
     }
     
     .stat-value {
-        font-size: 1rem;
+        font-size: 0.85rem;
         color: #1a202c;
         font-weight: 600;
+        white-space: nowrap;
     }
     
     /* Make table cells more readable */
