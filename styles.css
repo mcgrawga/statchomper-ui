@@ -1,5 +1,10 @@
-table {
+/* Tables are hidden by default, shown via wrapper */
+.table-wrapper {
     display: none;
+}
+
+.table-wrapper table {
+    display: table;
 }
 
 a {
@@ -8,6 +13,131 @@ a {
 
 body {
     margin: 25px;
+}
+
+/* Mobile-first improvements */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+        font-size: 16px;
+    }
+    
+    #title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Make player links bigger and easier to tap */
+    .player {
+        font-size: 1.5rem;
+        padding: 15px 10px;
+        margin: 10px 0;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        border: 2px solid #007bff;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .player:active {
+        background-color: #e9ecef;
+    }
+    
+    /* Make tables horizontally scrollable on mobile */
+    .table-wrapper {
+        display: none;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 30px;
+        /* Enable smooth scrolling with mouse wheel */
+        scroll-behavior: smooth;
+        cursor: grab;
+        user-select: none;
+    }
+    
+    .table-wrapper:active {
+        cursor: grabbing;
+    }
+    
+    .table-wrapper table {
+        display: table;
+        width: auto;
+        font-size: 0.9rem;
+        margin: 0;
+        table-layout: auto;
+    }
+    
+    /* Make table cells more readable */
+    table th,
+    table td {
+        padding: 10px 8px;
+        white-space: nowrap;
+    }
+    
+    /* Ensure columns have minimum widths to enable scrolling */
+    table th:not(:first-child),
+    table td:not(:first-child) {
+        min-width: 90px;
+    }
+    
+    /* Make header row stickier */
+    table thead {
+        background-color: #343a40;
+        color: white;
+    }
+    
+    table thead th {
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    /* Improve table row readability */
+    table tbody tr {
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    table tbody td {
+        text-align: center;
+        font-size: 0.85rem;
+    }
+    
+    /* Date column can be wider */
+    table tbody td:first-child {
+        min-width: 150px;
+        text-align: left;
+        font-weight: 500;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .player {
+        font-size: 1.2rem;
+        padding: 10px;
+        margin: 5px 0;
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .player:hover {
+        text-decoration: underline;
+    }
+    
+    table {
+        font-size: 1rem;
+    }
+    
+    table th,
+    table td {
+        padding: 12px;
+    }
 }
 
 

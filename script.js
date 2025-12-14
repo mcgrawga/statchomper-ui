@@ -12,7 +12,7 @@ $(document).ready(function(){
                     console.log(curPlayer);
                     curPlayer = response[i].player;
                     $(`body`).append(`<a href="#" id="${curPlayer}" class="player">${curPlayer}</a>`);    
-                    $(`body`).append(`<table id="${curPlayer}_stats" class="table table-striped"></table>`);  
+                    $(`body`).append(`<div class="table-wrapper"><table id="${curPlayer}_stats" class="table table-striped"></table></div>`);  
                     $(`#${curPlayer}_stats`).append(`<thead>
                         <tr>
                         <th>Date</th>
@@ -68,7 +68,39 @@ $(document).ready(function(){
 
     $(document).on( 'click', '.player', function(e) {
         console.log(this.id);
-        $(`#${this.id}_stats`).toggle();
+        $(`#${this.id}_stats`).closest('.table-wrapper').toggle();
         e.preventDefault();
+    });
+    
+    // Enable click-and-drag horizontal scrolling for tables
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    $(document).on('mousedown', '.table-wrapper', function(e) {
+        isDown = true;
+        const wrapper = $(this)[0];
+        startX = e.pageX - wrapper.offsetLeft;
+        scrollLeft = wrapper.scrollLeft;
+        $(this).css('cursor', 'grabbing');
+    });
+    
+    $(document).on('mouseleave', '.table-wrapper', function() {
+        isDown = false;
+        $(this).css('cursor', 'default');
+    });
+    
+    $(document).on('mouseup', '.table-wrapper', function() {
+        isDown = false;
+        $(this).css('cursor', 'default');
+    });
+    
+    $(document).on('mousemove', '.table-wrapper', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        const wrapper = $(this)[0];
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        wrapper.scrollLeft = scrollLeft - walk;
     });
 });
