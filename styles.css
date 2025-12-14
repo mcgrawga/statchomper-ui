@@ -13,6 +13,13 @@ a {
 
 body {
     margin: 25px;
+    background-color: #f5f7fa;
+    color: #2d3748;
+}
+
+#title {
+    color: #1a202c;
+    font-weight: 700;
 }
 
 /* Mobile-first improvements */
@@ -32,19 +39,23 @@ body {
         font-size: 1.5rem;
         padding: 15px 10px;
         margin: 10px 0;
-        background-color: #f8f9fa;
-        border-radius: 5px;
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        border-radius: 8px;
         text-decoration: none;
-        color: #007bff;
+        color: #ffffff;
         font-weight: bold;
-        border: 2px solid #007bff;
+        border: none;
+        box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
         min-height: 50px;
         display: flex;
         align-items: center;
+        transition: all 0.2s ease;
     }
     
     .player:active {
-        background-color: #e9ecef;
+        background: linear-gradient(135deg, #e55a2b 0%, #d6821a 100%);
+        box-shadow: 0 1px 2px rgba(255, 107, 53, 0.4);
+        transform: translateY(1px);
     }
     
     /* Make tables horizontally scrollable on mobile */
@@ -88,7 +99,7 @@ body {
     
     /* Make header row stickier */
     table thead {
-        background-color: #343a40;
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
         color: white;
     }
     
@@ -100,7 +111,20 @@ body {
     
     /* Improve table row readability */
     table tbody tr {
-        border-bottom: 1px solid #dee2e6;
+        border-bottom: 1px solid #e2e8f0;
+        transition: background-color 0.15s ease;
+    }
+    
+    table tbody tr:hover {
+        background-color: #f7fafc;
+    }
+    
+    table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    
+    table tbody tr:nth-child(even):hover {
+        background-color: #f7fafc;
     }
     
     table tbody td {
@@ -118,16 +142,27 @@ body {
 
 /* Desktop styles */
 @media (min-width: 769px) {
+    body {
+        background-color: #f5f7fa;
+    }
+    
     .player {
         font-size: 1.2rem;
-        padding: 10px;
-        margin: 5px 0;
-        color: #007bff;
+        padding: 12px 15px;
+        margin: 8px 0;
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        border-radius: 6px;
+        color: #ffffff;
         text-decoration: none;
+        box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+        transition: all 0.2s ease;
     }
     
     .player:hover {
-        text-decoration: underline;
+        background: linear-gradient(135deg, #ff7d4d 0%, #f9a33f 100%);
+        box-shadow: 0 4px 8px rgba(255, 107, 53, 0.4);
+        transform: translateY(-1px);
+        text-decoration: none;
     }
     
     table {
@@ -137,6 +172,18 @@ body {
     table th,
     table td {
         padding: 12px;
+    }
+    
+    table tbody tr:hover {
+        background-color: #f7fafc;
+    }
+    
+    table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    
+    table tbody tr:nth-child(even):hover {
+        background-color: #f7fafc;
     }
 }
 
