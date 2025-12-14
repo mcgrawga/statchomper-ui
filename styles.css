@@ -7,6 +7,11 @@
     display: table;
 }
 
+/* Cards wrapper - hidden by default */
+.cards-wrapper {
+    display: none;
+}
+
 a {
     display: block;
 }
@@ -58,30 +63,70 @@ body {
         transform: translateY(1px);
     }
     
-    /* Make tables horizontally scrollable on mobile */
+    /* Hide tables on mobile, show cards instead */
     .table-wrapper {
+        display: none !important;
+    }
+    
+    /* Show cards wrapper on mobile */
+    .cards-wrapper {
         display: none;
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: visible;
-        -webkit-overflow-scrolling: touch;
-        margin-bottom: 30px;
-        /* Enable smooth scrolling with mouse wheel */
-        scroll-behavior: smooth;
-        cursor: grab;
-        user-select: none;
+        margin-bottom: 20px;
     }
     
-    .table-wrapper:active {
-        cursor: grabbing;
+    /* Game card styling */
+    .game-card {
+        background: white;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
     }
     
-    .table-wrapper table {
-        display: table;
-        width: auto;
+    .game-header {
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        color: white;
+        padding: 12px 15px;
+        font-weight: bold;
+    }
+    
+    .game-date {
         font-size: 0.9rem;
-        margin: 0;
-        table-layout: auto;
+        margin-bottom: 4px;
+    }
+    
+    .game-opponent {
+        font-size: 1rem;
+        opacity: 0.95;
+    }
+    
+    .game-stats {
+        padding: 15px;
+    }
+    
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .stat-row:last-child {
+        border-bottom: none;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+        color: #1a202c;
+        font-weight: 600;
     }
     
     /* Make table cells more readable */
@@ -144,6 +189,15 @@ body {
 @media (min-width: 769px) {
     body {
         background-color: #f5f7fa;
+    }
+    
+    /* Hide cards on desktop, show tables */
+    .cards-wrapper {
+        display: none !important;
+    }
+    
+    .table-wrapper {
+        display: none;
     }
     
     .player {

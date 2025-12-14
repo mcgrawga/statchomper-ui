@@ -12,6 +12,7 @@ $(document).ready(function(){
                     console.log(curPlayer);
                     curPlayer = response[i].player;
                     $(`body`).append(`<a href="#" id="${curPlayer}" class="player">${curPlayer}</a>`);    
+                    // Desktop table
                     $(`body`).append(`<div class="table-wrapper"><table id="${curPlayer}_stats" class="table table-striped"></table></div>`);  
                     $(`#${curPlayer}_stats`).append(`<thead>
                         <tr>
@@ -27,7 +28,9 @@ $(document).ready(function(){
                         <th>Threepointers</th>
                         <th>Freethrows</th>
                         </tr>
-                        </thead><tbody></tbody>`);  
+                        </thead><tbody></tbody>`);
+                    // Mobile cards container
+                    $(`body`).append(`<div class="cards-wrapper" id="${curPlayer}_cards"></div>`);
                 }
                 let opponent = '???';
                 if (response[i].opponent){
@@ -45,6 +48,7 @@ $(document).ready(function(){
                 if (bs.freeThrowPercentage !== 'n/a' && bs.freeThrowPercentage !== 'NaN' && bs.freeThrowPercentage !== null){
                     freeThrowPercentage = `${Math.round(bs.freeThrowPercentage)}%`;
                 }
+                // Add to desktop table
                 $(`#${curPlayer}_stats`).append(`<tr>
                     <td>${response[i].datePlayed} vs. ${opponent}</td>
                     <td>${bs.points}</td>
@@ -57,7 +61,59 @@ $(document).ready(function(){
                     <td>${bs.twoPointMade} for ${bs.twoPointAttempts} (${twoPointPercentage})</td>
                     <td>${bs.threePointMade} for ${bs.threePointAttempts} (${threePointPercentage})</td>
                     <td>${bs.freeThrowMade} for ${bs.freeThrowAttempts} (${freeThrowPercentage})</td>`
-                );    
+                );
+                
+                // Add mobile card
+                $(`#${curPlayer}_cards`).append(`
+                    <div class="game-card">
+                        <div class="game-header">
+                            <div class="game-date">${response[i].datePlayed}</div>
+                            <div class="game-opponent">vs. ${opponent}</div>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Points</span>
+                                <span class="stat-value">${bs.points}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Rebounds</span>
+                                <span class="stat-value">${bs.rebounds}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Assists</span>
+                                <span class="stat-value">${bs.assists}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Blocks</span>
+                                <span class="stat-value">${bs.blocks}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Fouls</span>
+                                <span class="stat-value">${bs.fouls}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Steals</span>
+                                <span class="stat-value">${bs.steals}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Turnovers</span>
+                                <span class="stat-value">${bs.turnovers}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">2-Pointers</span>
+                                <span class="stat-value">${bs.twoPointMade}/${bs.twoPointAttempts} (${twoPointPercentage})</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">3-Pointers</span>
+                                <span class="stat-value">${bs.threePointMade}/${bs.threePointAttempts} (${threePointPercentage})</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Free Throws</span>
+                                <span class="stat-value">${bs.freeThrowMade}/${bs.freeThrowAttempts} (${freeThrowPercentage})</span>
+                            </div>
+                        </div>
+                    </div>
+                `);    
             }
             $('#loader').hide();
         },
@@ -69,6 +125,7 @@ $(document).ready(function(){
     $(document).on( 'click', '.player', function(e) {
         console.log(this.id);
         $(`#${this.id}_stats`).closest('.table-wrapper').toggle();
+        $(`#${this.id}_cards`).toggle();
         e.preventDefault();
     });
     
