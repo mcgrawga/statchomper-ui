@@ -126,7 +126,30 @@ $(document).ready(function(){
     $(document).on( 'click', '.player', function(e) {
         console.log(this.id);
         $(`#${this.id}_stats`).closest('.table-wrapper').toggle();
-        $(`#${this.id}_cards`).toggle();
+        const cardsWrapper = $(`#${this.id}_cards`);
+        cardsWrapper.toggle();
+        
+        // Check if there are more than 2 cards and add indicator
+        if (cardsWrapper.is(':visible')) {
+            const cardCount = cardsWrapper.find('.game-card').length;
+            if (cardCount > 2) {
+                cardsWrapper.addClass('has-more');
+                
+                // Remove the indicator when scrolled near bottom
+                cardsWrapper.on('scroll', function() {
+                    const scrollTop = $(this).scrollTop();
+                    const scrollHeight = $(this)[0].scrollHeight;
+                    const clientHeight = $(this)[0].clientHeight;
+                    
+                    if (scrollTop + clientHeight >= scrollHeight - 50) {
+                        $(this).removeClass('has-more');
+                    } else if (cardCount > 2) {
+                        $(this).addClass('has-more');
+                    }
+                });
+            }
+        }
+        
         e.preventDefault();
     });
     
