@@ -5,13 +5,21 @@ $(document).ready(function(){
         type: "GET",
         crossDomain: true,
         success: function (response) {
+            // First pass: count games per player
+            const gameCounts = {};
+            for (let i = 0; i < response.length; i++){
+                const player = response[i].player;
+                gameCounts[player] = (gameCounts[player] || 0) + 1;
+            }
+            
             let curPlayer;
             for (let i = 0; i < response.length; i++){
                 const bs = response[i].boxScore.game;
                 if (curPlayer !== response[i].player){
                     console.log(curPlayer);
                     curPlayer = response[i].player;
-                    $(`body`).append(`<a href="#" id="${curPlayer}" class="player">${curPlayer}</a>`);    
+                    const gameCount = gameCounts[curPlayer];
+                    $(`body`).append(`<div id="${curPlayer}" class="player"><span class="player-name">${curPlayer}</span><span class="game-count-badge" data-count="${gameCount}"></span></div>`);    
                     // Filter input
                     $(`body`).append(`<div class="filter-wrapper" id="${curPlayer}_filter_wrapper" style="display:none;">
                         <input type="text" class="game-filter" id="${curPlayer}_filter" placeholder="Filter games by date or opponent..." />
@@ -137,10 +145,13 @@ $(document).ready(function(){
         const cardsWrapper = $(`#${escapedId}_cards`);
         const isCurrentlyOpen = cardsWrapper.is(':visible');
         
-        // Close all other players' cards and filters
+        // Close all other players' cards and filters, and reset their filters
         $('.table-wrapper').hide();
         $('.cards-wrapper').hide();
         $('.filter-wrapper').hide();
+        $('.game-filter').val(''); // Clear all filter inputs
+        $('.game-card').show(); // Show all cards (reset filter results)
+        $('.no-results-message').hide(); // Hide any "no results" messages
         $('.player').removeClass('expanded');
         
         // If this player wasn't open, open it
@@ -154,7 +165,6 @@ $(document).ready(function(){
             
             if (cardCount >= 5) {
                 filterWrapper.show();
-                $(`#${escapedId}_filter`).val('');
             }
             
             // Add expanded class for chevron rotation
@@ -179,6 +189,8 @@ $(document).ready(function(){
         const cards = $(`#${escapedId}_cards .game-card`);
         console.log('Found cards:', cards.length);
         
+        let visibleCount = 0;
+        
         cards.each(function() {
             const gameHeader = $(this).find('.game-header');
             const dateText = gameHeader.find('.game-date').text().toLowerCase();
@@ -190,10 +202,30 @@ $(document).ready(function(){
             
             if (filterText === '' || searchText.includes(filterText)) {
                 $(this).show();
+                visibleCount++;
             } else {
                 $(this).hide();
             }
         });
+        
+        // Show/hide "no results" message
+        const cardsWrapper = $(`#${escapedId}_cards`);
+        let noResultsMsg = cardsWrapper.find('.no-results-message');
+        
+        if (visibleCount === 0 && filterText !== '') {
+            if (noResultsMsg.length === 0) {
+                cardsWrapper.append(`<div class="no-results-message">
+                    <span class="no-results-icon">🔍</span>
+                    <p>No games found matching "${filterText}"</p>
+                    <small>Try a different search term</small>
+                </div>`);
+            } else {
+                noResultsMsg.find('p').text(`No games found matching "${filterText}"`);
+                noResultsMsg.show();
+            }
+        } else {
+            noResultsMsg.hide();
+        }
     });
     
     // Enable click-and-drag horizontal scrolling for tables
