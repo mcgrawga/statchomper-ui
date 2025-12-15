@@ -173,9 +173,9 @@ body {
         background: white;
         border-radius: 10px;
         margin-bottom: 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         border: 1px solid #d1d9e2;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     
     .game-card:last-child {
@@ -211,19 +211,21 @@ body {
     
     .game-stats {
         padding: 15px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
     
     .stat-row {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 6px 8px;
+        gap: 8px;
+        padding: 6px 10px;
         border: 1px solid #e5eaf0;
         border-radius: 6px;
         background-color: #f8fafb;
+        flex: 0 1 auto;
+        min-width: fit-content;
     }
     
     .stat-label {
