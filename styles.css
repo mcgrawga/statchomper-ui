@@ -75,33 +75,22 @@ body {
     color: white;
 }
 
-.back-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
+.back-link {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.back-link a {
+    color: #64748b;
+    text-decoration: none;
     font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(100, 116, 139, 0.3);
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
 }
 
-.back-btn:hover {
-    background: linear-gradient(135deg, #475569 0%, #334155 100%);
-    box-shadow: 0 4px 8px rgba(100, 116, 139, 0.4);
-    transform: translateY(-1px);
-}
-
-.back-btn:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 4px rgba(100, 116, 139, 0.3);
+.back-link a:hover {
+    color: #475569;
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -114,8 +103,7 @@ body {
         font-size: 1.1rem;
     }
     
-    .back-btn {
-        padding: 14px 20px;
+    .back-link a {
         font-size: 1.1rem;
     }
 }
