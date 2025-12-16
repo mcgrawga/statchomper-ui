@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="add-game-styles.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="add-game-script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="title">
+                Add New Game
+            </h1>
+            
+            <div class="navigation-links">
+                <a href="home.html" class="nav-link-btn">← Back to Stats</a>
+            </div>
+            
+            <div id="loader" class="text-center">
+                <img src="loader.gif" alt="Loading...">
+            </div>
+            
+            <div id="game-form-container" style="display:none;">
+                <form id="game-form">
+                    <!-- Player Selection -->
+                    <div class="form-section">
+                        <h3 class="section-title">Player Information</h3>
+                        <div class="form-group">
+                            <label for="player-select">Player Name *</label>
+                            <select id="player-select" class="form-control" required>
+                                <option value="">-- Select a player --</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date-played">Date Played *</label>
+                            <input type="date" id="date-played" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opponent">Opponent *</label>
+                            <input type="text" id="opponent" class="form-control" placeholder="Enter opponent name" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Basic Stats -->
+                    <div class="form-section">
+                        <h3 class="section-title">Game Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="form-group">
+                                <label for="rebounds">Rebounds</label>
+                                <div class="input-with-button">
+                                    <input type="number" id="rebounds" class="form-control" min="0" value="0" required>
+                                    <button type="button" class="increment-btn" data-target="rebounds">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="assists">Assists</label>
+                                <div class="input-with-button">
+                                    <input type="number" id="assists" class="form-control" min="0" value="0" required>
+                                    <button type="button" class="increment-btn" data-target="assists">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="steals">Steals</label>
+                                <div class="input-with-button">
+                                    <input type="number" id="steals" class="form-control" min="0" value="0" required>
+                                    <button type="button" class="increment-btn" data-target="steals">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="blocks">Blocks</label>
+                                <div class="input-with-button">
+                                    <input type="number" id="blocks" class="form-control" min="0" value="0" required>
+                                    <button type="button" class="increment-btn" data-target="blocks">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="turnovers">Turnovers</label>
+                                <div class="input-with-button">
+                                    <input type="number" id="turnovers" class="form-control" min="0" value="0" required>
+                                    <button type="button" class="increment-btn" data-target="turnovers">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fouls">Fouls</label>
+                                <div class="input-with-button">
+                                    <input type="number" id="fouls" class="form-control" min="0" value="0" required>
+                                    <button type="button" class="increment-btn" data-target="fouls">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shooting Stats -->
+                    <div class="form-section">
+                        <h3 class="section-title">Shooting Statistics</h3>
+                        
+                        <!-- 2-Pointers -->
+                        <div class="shooting-stat-group">
+                            <h4 class="shooting-label">2-Pointers</h4>
+                            <div class="shooting-inputs">
+                                <div class="form-group">
+                                    <label for="two-point-made">Made</label>
+                                    <input type="number" id="two-point-made" class="form-control" min="0" value="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="two-point-attempts">Attempts</label>
+                                    <input type="number" id="two-point-attempts" class="form-control" min="0" value="0" required>
+                                </div>
+                                <div class="form-group percentage-display">
+                                    <label>Percentage</label>
+                                    <div class="percentage-value" id="two-point-percentage">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3-Pointers -->
+                        <div class="shooting-stat-group">
+                            <h4 class="shooting-label">3-Pointers</h4>
+                            <div class="shooting-inputs">
+                                <div class="form-group">
+                                    <label for="three-point-made">Made</label>
+                                    <input type="number" id="three-point-made" class="form-control" min="0" value="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="three-point-attempts">Attempts</label>
+                                    <input type="number" id="three-point-attempts" class="form-control" min="0" value="0" required>
+                                </div>
+                                <div class="form-group percentage-display">
+                                    <label>Percentage</label>
+                                    <div class="percentage-value" id="three-point-percentage">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Free Throws -->
+                        <div class="shooting-stat-group">
+                            <h4 class="shooting-label">Free Throws</h4>
+                            <div class="shooting-inputs">
+                                <div class="form-group">
+                                    <label for="free-throw-made">Made</label>
+                                    <input type="number" id="free-throw-made" class="form-control" min="0" value="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="free-throw-attempts">Attempts</label>
+                                    <input type="number" id="free-throw-attempts" class="form-control" min="0" value="0" required>
+                                </div>
+                                <div class="form-group percentage-display">
+                                    <label>Percentage</label>
+                                    <div class="percentage-value" id="free-throw-percentage">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <span class="submit-icon">🏀</span>
+                            Add Game
+                        </button>
+                        <button type="button" class="btn-reset" id="reset-form">
+                            Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Success Message -->
+            <div id="success-message" class="alert-message success" style="display:none;">
+                <span class="alert-icon">✓</span>
+                <p>Game added successfully!</p>
+            </div>
+            
+            <!-- Error Message -->
+            <div id="error-message" class="alert-message error" style="display:none;">
+                <span class="alert-icon">⚠</span>
+                <p id="error-text">An error occurred. Please try again.</p>
+            </div>
+        </div>
+    </body>
+</html>
