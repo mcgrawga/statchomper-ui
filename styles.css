@@ -1,15 +1,18 @@
-/* Tables are hidden by default, shown via wrapper */
+/* Unified responsive design - uses card layout on all screen sizes */
+
+/* Hide tables completely - using card layout everywhere */
 .table-wrapper {
-    display: none;
+    display: none !important;
 }
 
 .table-wrapper table {
-    display: table;
+    display: none !important;
 }
 
-/* Cards wrapper - hidden by default */
+/* Cards wrapper - hidden by default, shown when player expanded */
 .cards-wrapper {
     display: none;
+    margin-bottom: 20px;
 }
 
 a {
@@ -20,6 +23,14 @@ body {
     margin: 25px;
     background-color: #f5f7fa;
     color: #2d3748;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+        font-size: 16px;
+    }
 }
 
 #title {
@@ -47,13 +58,8 @@ body {
     font-size: 2rem;
 }
 
-/* Mobile-first improvements */
+/* Responsive title adjustments */
 @media (max-width: 768px) {
-    body {
-        margin: 10px;
-        font-size: 16px;
-    }
-    
     #title {
         font-size: 1.75rem;
         margin-bottom: 20px;
@@ -64,349 +70,242 @@ body {
     #title::after {
         font-size: 1.5rem;
     }
-    
-    /* Make player buttons bigger and easier to tap */
-    .player {
-        font-size: 1.5rem;
-        padding: 15px 10px;
-        margin: 10px 0;
-        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-        border-radius: 8px;
-        color: #ffffff;
-        font-weight: bold;
-        border: none;
-        box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: all 0.2s ease;
-        position: relative;
-        gap: 10px;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-    
-    .player-name {
-        flex: 1;
-    }
-    
-    /* Game count badge */
-    .game-count-badge {
-        background-color: rgba(255, 255, 255, 0.3);
-        color: #ffffff;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 3px 8px;
-        border-radius: 10px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 20px;
-    }
-    
-    .game-count-badge::before {
-        content: attr(data-count);
-    }
-    
-    /* Add chevron indicator using CSS borders */
-    .player::after {
-        content: '';
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-right: 3px solid white;
-        border-bottom: 3px solid white;
-        transform: rotate(-45deg);
-        margin-left: 10px;
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
-    }
-    
-    /* Rotate chevron when expanded */
-    .player.expanded::after {
-        transform: rotate(45deg);
-    }
-    
-    .player:active {
-        background: linear-gradient(135deg, #e55a2b 0%, #d6821a 100%);
-        box-shadow: 0 1px 2px rgba(255, 107, 53, 0.4);
-        transform: translateY(1px);
-    }
-    
-    /* Hide tables on mobile, show cards instead */
-    .table-wrapper {
-        display: none !important;
-    }
-    
-    /* Filter input wrapper */
-    .filter-wrapper {
-        margin: 15px 0;
-    }
-    
-    .game-filter {
-        width: 100%;
-        padding: 12px 15px;
-        font-size: 1rem;
-        border: 2px solid #cbd5e1;
-        border-radius: 8px;
-        background-color: #ffffff;
-        color: #2d3748;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        box-sizing: border-box;
-    }
-    
-    .game-filter:focus {
-        outline: none;
-        border-color: #ff6b35;
-        box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
-    }
-    
-    .game-filter::placeholder {
-        color: #94a3b8;
-    }
-    
-    /* Show cards wrapper on mobile */
-    .cards-wrapper {
-        display: none;
-        margin-bottom: 20px;
-    }
-    
-    /* No results message */
-    .no-results-message {
-        text-align: center;
-        padding: 20px 20px 40px 20px;
-        color: #64748b;
-    }
-    
-    .no-results-icon {
-        font-size: 3rem;
-        display: block;
-        margin-bottom: 15px;
-        opacity: 0.5;
-    }
-    
-    .no-results-message p {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #2d3748;
-        margin: 10px 0;
-    }
-    
-    .no-results-message small {
-        font-size: 0.9rem;
-        color: #94a3b8;
-        display: block;
-        margin-top: 5px;
-    }
-    
-    /* Custom scrollbar for cards wrapper */
-    .cards-wrapper::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    .cards-wrapper::-webkit-scrollbar-track {
-        background: #f1f5f9;
-        border-radius: 4px;
-    }
-    
-    .cards-wrapper::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-    }
-    
-    .cards-wrapper::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-    }
-    
-    /* Game card styling */
-    .game-card {
-        background: white;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        overflow: hidden;
-        border: 1px solid #d1d9e2;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .game-card:last-child {
-        margin-bottom: 0;
-    }
-    
-    .game-header {
-        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-        color: white;
-        padding: 12px 15px;
-        font-weight: bold;
-    }
-    
-    .game-player {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    .game-date {
-        font-size: 0.9rem;
-        margin-bottom: 4px;
-        opacity: 0.9;
-    }
-    
-    .game-opponent {
-        font-size: 1rem;
-        opacity: 0.95;
-    }
-    
-    .game-stats {
-        padding: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .stat-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 10px;
-        border: 1px solid #e5eaf0;
-        border-radius: 6px;
-        background-color: #f8fafb;
-        flex: 0 1 auto;
-        min-width: fit-content;
-    }
-    
-    .stat-label {
-        font-size: 0.75rem;
-        color: #64748b;
-        font-weight: 500;
-        white-space: nowrap;
-    }
-    
-    .stat-value {
-        font-size: 0.85rem;
-        color: #1a202c;
-        font-weight: 600;
-        white-space: nowrap;
-    }
-    
-    /* Make table cells more readable */
-    table th,
-    table td {
-        padding: 10px 8px;
-        white-space: nowrap;
-    }
-    
-    /* Ensure columns have minimum widths to enable scrolling */
-    table th:not(:first-child),
-    table td:not(:first-child) {
-        min-width: 90px;
-    }
-    
-    /* Make header row stickier */
-    table thead {
-        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-        color: white;
-    }
-    
-    table thead th {
-        font-size: 0.85rem;
-        font-weight: bold;
-        text-align: center;
-    }
-    
-    /* Improve table row readability */
-    table tbody tr {
-        border-bottom: 1px solid #e2e8f0;
-        transition: background-color 0.15s ease;
-    }
-    
-    table tbody tr:hover {
-        background-color: #f7fafc;
-    }
-    
-    table tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-    
-    table tbody tr:nth-child(even):hover {
-        background-color: #f7fafc;
-    }
-    
-    table tbody td {
-        text-align: center;
-        font-size: 0.85rem;
-    }
-    
-    /* Date column can be wider */
-    table tbody td:first-child {
-        min-width: 150px;
-        text-align: left;
-        font-weight: 500;
-    }
 }
 
-/* Desktop styles */
+/* Player buttons - responsive and interactive */
+.player {
+    font-size: 1.5rem;
+    padding: 15px 10px;
+    margin: 10px 0;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    position: relative;
+    gap: 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Desktop player button adjustments */
 @media (min-width: 769px) {
-    body {
-        background-color: #f5f7fa;
-    }
-    
-    /* Hide cards on desktop, show tables */
-    .cards-wrapper {
-        display: none !important;
-    }
-    
-    .table-wrapper {
-        display: none;
-    }
-    
     .player {
         font-size: 1.2rem;
         padding: 12px 15px;
         margin: 8px 0;
-        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-        border-radius: 6px;
-        color: #ffffff;
-        text-decoration: none;
-        box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
-        transition: all 0.2s ease;
     }
     
     .player:hover {
         background: linear-gradient(135deg, #ff7d4d 0%, #f9a33f 100%);
         box-shadow: 0 4px 8px rgba(255, 107, 53, 0.4);
         transform: translateY(-1px);
-        text-decoration: none;
     }
-    
-    table {
-        font-size: 1rem;
-    }
-    
-    table th,
-    table td {
-        padding: 12px;
-    }
-    
-    table tbody tr:hover {
-        background-color: #f7fafc;
-    }
-    
-    table tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-    
-    table tbody tr:nth-child(even):hover {
-        background-color: #f7fafc;
-    }
+}
+
+.player:active {
+    background: linear-gradient(135deg, #e55a2b 0%, #d6821a 100%);
+    box-shadow: 0 1px 2px rgba(255, 107, 53, 0.4);
+    transform: translateY(1px);
+}
+
+.player-name {
+    flex: 1;
+}
+
+/* Game count badge */
+.game-count-badge {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+}
+
+.game-count-badge::before {
+    content: attr(data-count);
+}
+
+/* Chevron indicator for expandable players */
+.player::after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(-45deg);
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Rotate chevron when expanded */
+.player.expanded::after {
+    transform: rotate(45deg);
+}
+
+/* Filter input wrapper */
+.filter-wrapper {
+    margin: 15px 0;
+}
+
+.game-filter {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #2d3748;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.game-filter:focus {
+    outline: none;
+    border-color: #ff6b35;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
+}
+
+.game-filter::placeholder {
+    color: #94a3b8;
+}
+
+/* No results message */
+.no-results-message {
+    text-align: center;
+    padding: 20px 20px 40px 20px;
+    color: #64748b;
+}
+
+.no-results-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.no-results-message p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 10px 0;
+}
+
+.no-results-message small {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Custom scrollbar for cards wrapper */
+.cards-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cards-wrapper::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Game card styling - responsive layout */
+.game-card {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border: 1px solid #d1d9e2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-card:last-child {
+    margin-bottom: 0;
+}
+
+.game-header {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    color: white;
+    padding: 12px 15px;
+    font-weight: bold;
+}
+
+.game-player {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.game-date {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    opacity: 0.9;
+}
+
+.game-opponent {
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+.game-stats {
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid #e5eaf0;
+    border-radius: 6px;
+    background-color: #f8fafb;
+    flex: 0 1 auto;
+    min-width: fit-content;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.stat-value {
+    font-size: 0.85rem;
+    color: #1a202c;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 
