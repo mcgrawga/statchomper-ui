@@ -15,7 +15,8 @@
     margin-bottom: 20px;
 }
 
-a {
+/* Only apply block display to player links, not navigation buttons */
+.player {
     display: block;
 }
 
