@@ -78,6 +78,14 @@ body {
     color: white !important;
 }
 
+.arrow-icon {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+
 @media (max-width: 768px) {
     .navigation-links {
         margin-bottom: 20px;
@@ -89,6 +97,10 @@ body {
         line-height: 1.4;
         text-decoration: none !important;
         color: white !important;
+    }
+    
+    .arrow-icon {
+        font-size: 1.3em;
     }
 }
 
