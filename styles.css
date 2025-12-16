@@ -75,13 +75,6 @@ body {
     color: white;
 }
 
-.nav-arrow {
-    display: inline-block;
-    transform: scale(1.4);
-    font-weight: bold;
-    margin-right: 8px;
-}
-
 @media (max-width: 768px) {
     .navigation-links {
         margin-bottom: 20px;
@@ -90,10 +83,6 @@ body {
     .nav-link-btn {
         padding: 14px 20px;
         font-size: 1.1rem;
-    }
-    
-    .nav-arrow {
-        transform: scale(1.5);
     }
 }
 
