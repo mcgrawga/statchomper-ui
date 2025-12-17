@@ -453,11 +453,20 @@ select.form-control {
 }
 
 /* Mobile browser fixes */
+* {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 html {
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    font-size: 16px;
+    min-height: 100vh;
 }
 
 body {
@@ -467,4 +476,100 @@ body {
     text-size-adjust: 100%;
     min-height: 100vh;
     width: 100%;
+    font-size: 16px !important;
+}
+
+/* Force proper sizing on mobile devices */
+@media (max-width: 768px) {
+    html {
+        font-size: 16px !important;
+    }
+    
+    body {
+        font-size: 16px !important;
+        margin: 15px !important;
+        padding: 0;
+    }
+    
+    .container {
+        padding: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    #game-form-container {
+        padding: 20px !important;
+    }
+    
+    .form-control {
+        font-size: 16px !important;
+        min-height: 48px !important;
+        padding: 12px 15px !important;
+    }
+    
+    .form-group label {
+        font-size: 16px !important;
+        margin-bottom: 8px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+    
+    #title {
+        font-size: 2rem !important;
+    }
+    
+    .nav-link-btn {
+        font-size: 16px !important;
+        padding: 14px 24px !important;
+        min-height: 48px;
+    }
+    
+    /* Fix input alignment */
+    select.form-control,
+    input[type="date"].form-control,
+    input[type="text"].form-control,
+    input[type="number"].form-control {
+        font-size: 16px !important;
+        line-height: 1.5;
+        height: auto;
+        min-height: 48px;
+    }
+    
+    /* Fix button alignment */
+    .btn-submit,
+    .btn-reset {
+        font-size: 16px !important;
+        padding: 14px 28px !important;
+        min-height: 48px;
+    }
+    
+    /* Fix shooting stats display */
+    .shooting-inputs {
+        display: flex;
+        flex-direction: row !important;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .shooting-inputs .form-group {
+        flex: 1;
+        min-width: calc(33.333% - 10px);
+    }
+    
+    /* Fix percentage display */
+    .percentage-display {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    
+    .percentage-value {
+        font-size: 18px !important;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
