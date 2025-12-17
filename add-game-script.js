@@ -28,12 +28,31 @@ $(document).ready(function() {
     // Handle increment button clicks
     $(document).on('click', '.increment-btn', function() {
         const targetId = $(this).data('target');
-        const input = $(`#${targetId}`);
-        const currentValue = parseInt(input.val()) || 0;
-        input.val(currentValue + 1);
+        const attemptsInput = $(`#${targetId}`);
+        const attemptsValue = parseInt(attemptsInput.val()) || 0;
+        attemptsInput.val(attemptsValue + 1);
+        
+        // For shooting stats, also increment the "made" field
+        if (targetId.includes('-attempts')) {
+            const madeId = targetId.replace('-attempts', '-made');
+            const madeInput = $(`#${madeId}`);
+            const madeValue = parseInt(madeInput.val()) || 0;
+            madeInput.val(madeValue + 1);
+        }
         
         // Trigger input event if this is a shooting stat to update percentage
-        input.trigger('input');
+        attemptsInput.trigger('input');
+    });
+    
+    // Handle decrement button clicks - only increments attempts, not made
+    $(document).on('click', '.decrement-btn', function() {
+        const targetId = $(this).data('target');
+        const attemptsInput = $(`#${targetId}`);
+        const attemptsValue = parseInt(attemptsInput.val()) || 0;
+        attemptsInput.val(attemptsValue + 1);
+        
+        // Trigger input event if this is a shooting stat to update percentage
+        attemptsInput.trigger('input');
     });
     
     // Calculate and display shooting percentages in real-time

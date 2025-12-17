@@ -216,6 +216,7 @@ select.form-control {
     display: flex;
     gap: 6px;
     align-items: stretch;
+    width: 100%;
 }
 
 .input-with-button .form-control {
@@ -223,6 +224,13 @@ select.form-control {
     min-width: 0;
     padding: 8px 10px;
     font-size: 0.95rem;
+    width: 100%;
+}
+
+/* Ensure shooting inputs form-groups are equal width */
+.shooting-inputs .form-group {
+    width: 100%;
+    flex: 1;
 }
 
 .stats-grid .form-group {
@@ -236,22 +244,27 @@ select.form-control {
 }
 
 .increment-btn {
-    width: 44px;
-    min-width: 44px;
+    width: auto;
+    min-width: 80px;
+    height: 46px;
+    padding: 8px 20px;
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 1.3rem;
-    font-weight: bold;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    line-height: 1;
 }
 
 .increment-btn:hover {
@@ -265,8 +278,44 @@ select.form-control {
     box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
 }
 
+.decrement-btn {
+    width: auto;
+    min-width: 46px;
+    height: 46px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    line-height: 1;
+}
+
+.decrement-btn:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
+    transform: translateY(-1px);
+}
+
+.decrement-btn:active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
 @media (max-width: 768px) {
-    .increment-btn {
+    .increment-btn,
+    .decrement-btn {
         width: 48px;
         min-width: 48px;
         font-size: 1.5rem;
@@ -300,9 +349,55 @@ select.form-control {
 
 .shooting-inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 15px;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
     align-items: end;
+}
+
+.shooting-inputs .form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.shooting-inputs .form-control {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.button-group-inline {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.button-group-inline label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+.buttons-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.shooting-inputs .increment-btn {
+    min-width: 100px !important;
+    max-width: 100px !important;
+    padding: 8px 16px !important;
+}
+
+.shooting-inputs .decrement-btn {
+    min-width: 100px !important;
+    max-width: 100px !important;
+    padding: 8px 16px !important;
+    width: 100px !important;
 }
 
 @media (max-width: 600px) {
