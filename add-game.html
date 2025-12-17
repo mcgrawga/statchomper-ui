@@ -7,8 +7,8 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css?v=18">
-        <link rel="stylesheet" href="add-game-styles.css?v=18">
+        <link rel="stylesheet" href="styles.css?v=21">
+        <link rel="stylesheet" href="add-game-styles.css?v=21">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="add-game-script.js"></script>
@@ -171,6 +171,29 @@
                                     <input type="number" id="fouls" class="form-control" min="0" value="0" required>
                                     <button type="button" class="increment-btn" data-target="fouls">+</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shooting Summary -->
+                    <div class="form-section" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">
+                        <h3 class="section-title" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">Shooting Summary</h3>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <label class="summary-label">Points Scored</label>
+                                <div class="summary-value" id="points-scored">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <label class="summary-label">2-Pointers</label>
+                                <div class="summary-value" id="two-point-summary">0 for 0, 0%</div>
+                            </div>
+                            <div class="summary-item">
+                                <label class="summary-label">3-Pointers</label>
+                                <div class="summary-value" id="three-point-summary">0 for 0, 0%</div>
+                            </div>
+                            <div class="summary-item">
+                                <label class="summary-label">Free Throws</label>
+                                <div class="summary-value" id="free-throw-summary">0 for 0, 0%</div>
                             </div>
                         </div>
                     </div>

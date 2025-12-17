@@ -38,6 +38,9 @@ $(document).ready(function() {
             const madeInput = $(`#${madeId}`);
             const madeValue = parseInt(madeInput.val()) || 0;
             madeInput.val(madeValue + 1);
+            
+            // Trigger input event on made field to update points scored
+            madeInput.trigger('input');
         }
         
         // Trigger input event if this is a shooting stat to update percentage
@@ -91,6 +94,81 @@ $(document).ready(function() {
     $('#free-throw-made, #free-throw-attempts').on('input', function() {
         updatePercentage('free-throw-made', 'free-throw-attempts', 'free-throw-percentage');
     });
+    
+    // Calculate and display points scored
+    function updatePointsScored() {
+        const twoPointMade = parseInt($('#two-point-made').val()) || 0;
+        const threePointMade = parseInt($('#three-point-made').val()) || 0;
+        const freeThrowMade = parseInt($('#free-throw-made').val()) || 0;
+        
+        const pointsScored = (twoPointMade * 2) + (threePointMade * 3) + freeThrowMade;
+        $('#points-scored').text(pointsScored);
+    }
+    
+    // Calculate and display 2-pointer summary
+    function updateTwoPointSummary() {
+        const made = parseInt($('#two-point-made').val()) || 0;
+        const attempts = parseInt($('#two-point-attempts').val()) || 0;
+        
+        let percentage = 0;
+        if (attempts > 0) {
+            percentage = Math.round((made / attempts) * 100);
+        }
+        
+        $('#two-point-summary').text(`${made} for ${attempts}, ${percentage}%`);
+    }
+    
+    // Calculate and display 3-pointer summary
+    function updateThreePointSummary() {
+        const made = parseInt($('#three-point-made').val()) || 0;
+        const attempts = parseInt($('#three-point-attempts').val()) || 0;
+        
+        let percentage = 0;
+        if (attempts > 0) {
+            percentage = Math.round((made / attempts) * 100);
+        }
+        
+        $('#three-point-summary').text(`${made} for ${attempts}, ${percentage}%`);
+    }
+    
+    // Calculate and display free throw summary
+    function updateFreeThrowSummary() {
+        const made = parseInt($('#free-throw-made').val()) || 0;
+        const attempts = parseInt($('#free-throw-attempts').val()) || 0;
+        
+        let percentage = 0;
+        if (attempts > 0) {
+            percentage = Math.round((made / attempts) * 100);
+        }
+        
+        $('#free-throw-summary').text(`${made} for ${attempts}, ${percentage}%`);
+    }
+    
+    // Update points scored when any shooting stat changes
+    $('#two-point-made, #three-point-made, #free-throw-made').on('input', function() {
+        updatePointsScored();
+    });
+    
+    // Update 2-pointer summary when made or attempts changes
+    $('#two-point-made, #two-point-attempts').on('input', function() {
+        updateTwoPointSummary();
+    });
+    
+    // Update 3-pointer summary when made or attempts changes
+    $('#three-point-made, #three-point-attempts').on('input', function() {
+        updateThreePointSummary();
+    });
+    
+    // Update free throw summary when made or attempts changes
+    $('#free-throw-made, #free-throw-attempts').on('input', function() {
+        updateFreeThrowSummary();
+    });
+    
+    // Initialize on page load
+    updatePointsScored();
+    updateTwoPointSummary();
+    updateThreePointSummary();
+    updateFreeThrowSummary();
     
     // Form submission
     $('#game-form').on('submit', function(e) {
