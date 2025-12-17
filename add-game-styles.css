@@ -451,3 +451,20 @@ select.form-control {
     margin: 40px auto;
     display: block;
 }
+
+/* Mobile browser fixes */
+html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    min-height: 100vh;
+    width: 100%;
+}
