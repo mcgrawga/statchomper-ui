@@ -16,12 +16,32 @@ $(document).ready(function() {
                 $('#player-select').append(`<option value="${player}">${player}</option>`);
             });
             
+            // Add "Add New Player" option at the end
+            $('#player-select').append(`<option value="__new__">+ Add New Player</option>`);
+            
             $('#loader').hide();
             $('#game-form-container').show();
         },
         error: function(xhr, status) {
             $('#loader').hide();
             showError('Failed to load player names. Please refresh the page.');
+        }
+    });
+    
+    // Handle player selection change
+    $('#player-select').on('change', function() {
+        const selectedValue = $(this).val();
+        
+        if (selectedValue === '__new__') {
+            // Show new player input field
+            $('#new-player-input').show();
+            $('#new-player-name').attr('required', true);
+            $('#player-select').removeAttr('required');
+        } else {
+            // Hide new player input field
+            $('#new-player-input').hide();
+            $('#new-player-name').removeAttr('required').val('');
+            $('#player-select').attr('required', true);
         }
     });
     
@@ -192,8 +212,18 @@ $(document).ready(function() {
         // Calculate total points
         const totalPoints = (twoPointMade * 2) + (threePointMade * 3) + freeThrowMade;
         
+        // Get player name - use new player name if that option was selected
+        let playerName = $('#player-select').val();
+        if (playerName === '__new__') {
+            playerName = $('#new-player-name').val().trim();
+            if (!playerName) {
+                showError('Please enter a player name.');
+                return;
+            }
+        }
+        
         const gameData = {
-            player: $('#player-select').val(),
+            player: playerName,
             datePlayed: $('#date-played').val(),
             opponent: $('#opponent').val(),
             boxScore: {
