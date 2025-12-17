@@ -7,31 +7,31 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="add-game-styles.css">
+        <link rel="stylesheet" href="styles.css?v=3">
+        <link rel="stylesheet" href="add-game-styles.css?v=3">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="add-game-script.js"></script>
     </head>
-    <body>
-        <div class="container">
+    <body style="margin: 0 !important; padding: 10px !important; overflow-x: hidden !important;">
+        <div class="container" style="max-width: 800px !important; margin: 0 auto !important; padding: 15px !important; width: 100% !important; box-sizing: border-box !important;">
             <h1 id="title">
                 Add New Game
             </h1>
             
             <div class="navigation-links">
-                <a href="home.html" class="nav-link-btn">← Back to Stats</a>
+                <a href="home.html" class="nav-link-btn"><span class="arrow" aria-hidden="true">←</span> Back to Stats</a>
             </div>
 
             <div id="loader" class="text-center">
                 <img src="loader.gif" alt="Loading...">
             </div>
             
-            <div id="game-form-container" style="display:none;">
-                <form id="game-form">
+            <div id="game-form-container" style="display:none; background: white; border-radius: 12px; padding: 20px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100% !important; box-sizing: border-box !important; border: none !important;">
+                <form id="game-form" style="border: none !important;">
                     <!-- Player Selection -->
-                    <div class="form-section">
-                        <h3 class="section-title">Player Information</h3>
+                    <div class="form-section" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">
+                        <h3 class="section-title" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;"></h3>Player Information</h3>
                         <div class="form-group">
                             <label for="player-select">Player Name *</label>
                             <select id="player-select" class="form-control" required>
@@ -51,8 +51,8 @@
                     </div>
                     
                     <!-- Basic Stats -->
-                    <div class="form-section">
-                        <h3 class="section-title">Game Statistics</h3>
+                    <div class="form-section" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">
+                        <h3 class="section-title" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">Game Statistics</h3>
                         <div class="stats-grid">
                             <div class="form-group">
                                 <label for="rebounds">Rebounds</label>
@@ -105,8 +105,8 @@
                     </div>
                     
                     <!-- Shooting Stats -->
-                    <div class="form-section">
-                        <h3 class="section-title">Shooting Statistics</h3>
+                    <div class="form-section" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">
+                        <h3 class="section-title" style="border-left: none !important; padding-left: 0 !important; margin-left: 0 !important;">Shooting Statistics</h3>
                         
                         <!-- 2-Pointers -->
                         <div class="shooting-stat-group">
