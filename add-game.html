@@ -7,11 +7,16 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css?v=22">
-        <link rel="stylesheet" href="add-game-styles.css?v=22">
+        <script>
+            var v = Date.now();
+            document.write('<link rel="stylesheet" href="styles.css?v=' + v + '">');
+            document.write('<link rel="stylesheet" href="add-game-styles.css?v=' + v + '">');
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="add-game-script.js"></script>
+        <script>
+            document.write('<script src="add-game-script.js?v=' + v + '"><\/script>');
+        </script>
     </head>
     <body style="margin: 0 !important; padding: 10px !important; overflow-x: hidden !important;">
         <div class="container" style="max-width: 800px !important; margin: 0 auto !important; padding: 15px !important; width: 100% !important; box-sizing: border-box !important;">

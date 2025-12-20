@@ -15,7 +15,13 @@ $(document).ready(function(){
             let curPlayer;
             for (let i = 0; i < response.length; i++){
                 try {
-                    const bs = response[i].boxScore.game;
+                    const bs = response[i].boxScore;
+                    
+                    // Skip if boxScore is missing or invalid
+                    if (!bs) {
+                        throw new Error('Missing boxScore data');
+                    }
+                    
                     if (curPlayer !== response[i].player){
                         console.log(curPlayer);
                         curPlayer = response[i].player;

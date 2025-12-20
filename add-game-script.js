@@ -262,23 +262,75 @@ $(document).ready(function() {
         
         console.log('Submitting game data:', gameData);
         
-        // Submit to API
+        // Build statline string for SMS format
+        const twoPointMissed = parseInt($('#two-point-attempts').val()) - twoPointMade;
+        const threePointMissed = parseInt($('#three-point-attempts').val()) - threePointMade;
+        const freeThrowMissed = parseInt($('#free-throw-attempts').val()) - freeThrowMade;
+        
+        let statline = '';
+        
+        // Add 2-pointers made (each as '2')
+        statline += '2'.repeat(twoPointMade);
+        
+        // Add 2-pointers missed (each as '-2')
+        statline += '-2'.repeat(twoPointMissed);
+        
+        // Add 3-pointers made (each as '3')
+        statline += '3'.repeat(threePointMade);
+        
+        // Add 3-pointers missed (each as '-3')
+        statline += '-3'.repeat(threePointMissed);
+        
+        // Add free throws made (each as '1')
+        statline += '1'.repeat(freeThrowMade);
+        
+        // Add free throws missed (each as '-1')
+        statline += '-1'.repeat(freeThrowMissed);
+        
+        // Add other stats
+        statline += 'a'.repeat(parseInt($('#assists').val()) || 0);
+        statline += 'r'.repeat(parseInt($('#rebounds').val()) || 0);
+        statline += 's'.repeat(parseInt($('#steals').val()) || 0);
+        statline += 'b'.repeat(parseInt($('#blocks').val()) || 0);
+        statline += 't'.repeat(parseInt($('#turnovers').val()) || 0);
+        statline += 'f'.repeat(parseInt($('#fouls').val()) || 0);
+        
+        // Format: yyyy-mm-dd:PlayerName:Opponent:Statline
+        const smsBody = `${$('#date-played').val()}:${playerName}:${$('#opponent').val()}:${statline}`;
+        
+        console.log('SMS format body:', smsBody);
+        
+        // Submit to API with x-www-form-urlencoded format
         $.ajax({
-            url: 'https://statchomper.herokuapp.com/basketball-statlines',
+            url: 'https://statchomper.herokuapp.com/sms-basketball',
             type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(gameData),
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: $.param({ Body: smsBody }),
             success: function(response) {
                 console.log('Game added successfully:', response);
                 showSuccess();
                 setTimeout(function() {
-                    // Reset form after 2 seconds
-                    resetForm();
+                    // Redirect to home page
+                    window.location.href = 'home.html';
                 }, 2000);
             },
             error: function(xhr, status, error) {
                 console.error('Error adding game:', xhr, status, error);
-                showError('Failed to add game. Please try again or check your connection.');
+                console.error('Response text:', xhr.responseText);
+                console.error('Status code:', xhr.status);
+                
+                let errorMsg = 'Failed to add game. ';
+                if (xhr.responseText) {
+                    errorMsg += xhr.responseText;
+                } else if (xhr.status === 404) {
+                    errorMsg += 'Endpoint not found (404).';
+                } else if (xhr.status === 0) {
+                    errorMsg += 'Network error - please check your connection.';
+                } else {
+                    errorMsg += 'Please try again.';
+                }
+                
+                showError(errorMsg);
             }
         });
     });
