@@ -165,6 +165,14 @@ $(document).ready(function(){
             
             // Add expanded class for chevron rotation
             $(this).addClass('expanded');
+            
+            // Scroll to player name at top of viewport
+            const playerElement = $(this);
+            const scrollPosition = playerElement.offset().top - 10; // 10px padding from top
+            
+            $('html, body').animate({
+                scrollTop: scrollPosition
+            }, 300);
         }
         
         e.preventDefault();
