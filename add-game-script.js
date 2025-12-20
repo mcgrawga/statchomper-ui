@@ -300,6 +300,10 @@ $(document).ready(function() {
         
         console.log('SMS format body:', smsBody);
         
+        // Disable submit button to prevent multiple submissions
+        const submitButton = $('.btn-submit');
+        submitButton.prop('disabled', true);
+        
         // Submit to API with x-www-form-urlencoded format
         $.ajax({
             url: 'https://statchomper.herokuapp.com/sms-basketball',
@@ -315,6 +319,9 @@ $(document).ready(function() {
                 }, 2000);
             },
             error: function(xhr, status, error) {
+                // Re-enable submit button on error
+                submitButton.prop('disabled', false);
+                
                 console.error('Error adding game:', xhr, status, error);
                 console.error('Response text:', xhr.responseText);
                 console.error('Status code:', xhr.status);
