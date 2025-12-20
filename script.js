@@ -127,6 +127,20 @@ $(document).ready(function(){
                 }
             }
             $('#loader').hide();
+            
+            // Check if there's a player parameter in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const playerToExpand = urlParams.get('player');
+            
+            if (playerToExpand) {
+                // Wait a bit for rendering to complete, then simulate click
+                setTimeout(function() {
+                    const playerElement = $(`#${playerToExpand}.player`);
+                    if (playerElement.length > 0) {
+                        playerElement.trigger('click');
+                    }
+                }, 100);
+            }
         },
         error: function (xhr, status) {
             $('body').append(`${status}`);
