@@ -128,11 +128,13 @@ $(document).ready(function(){
             }
             $('#loader').hide();
             
-            // Check if there's a player parameter in the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const playerToExpand = urlParams.get('player');
+            // Check if there's a player to expand from sessionStorage
+            const playerToExpand = sessionStorage.getItem('expandPlayer');
             
             if (playerToExpand) {
+                // Clear the sessionStorage so it doesn't persist on refresh
+                sessionStorage.removeItem('expandPlayer');
+                
                 // Wait a bit for rendering to complete, then simulate click
                 setTimeout(function() {
                     const playerElement = $(`#${playerToExpand}.player`);

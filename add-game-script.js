@@ -314,8 +314,10 @@ $(document).ready(function() {
                 console.log('Game added successfully:', response);
                 showSuccess();
                 setTimeout(function() {
-                    // Redirect to home page with player name as URL parameter
-                    window.location.href = 'home.html?player=' + encodeURIComponent(playerName);
+                    // Store player name in sessionStorage for one-time use
+                    sessionStorage.setItem('expandPlayer', playerName);
+                    // Redirect to home page
+                    window.location.href = 'home.html';
                 }, 2000);
             },
             error: function(xhr, status, error) {
