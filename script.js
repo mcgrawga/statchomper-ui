@@ -53,11 +53,16 @@ $(document).ready(function(){
                     
                     // Add mobile card
                     $(`#${curPlayer}_cards`).append(`
-                        <div class="game-card">
+                        <div class="game-card" data-game-id="${response[i]._id}">
                             <div class="game-header">
-                                <div class="game-player">${curPlayer}</div>
-                                <div class="game-date">${response[i].datePlayed}</div>
-                                <div class="game-opponent">vs. ${opponent}</div>
+                                <div class="game-info">
+                                    <div class="game-player">${curPlayer}</div>
+                                    <div class="game-date">${response[i].datePlayed}</div>
+                                    <div class="game-opponent">vs. ${opponent}</div>
+                                </div>
+                                <button class="edit-game-btn" data-game-id="${response[i]._id}" title="Edit game">
+                                    ✏️
+                                </button>
                             </div>
                             <div class="game-stats">
                                 <div class="stat-row">
@@ -246,5 +251,12 @@ $(document).ready(function(){
         } else {
             noResultsMsg.hide();
         }
+    });
+    
+    // Handle edit game button clicks
+    $(document).on('click', '.edit-game-btn', function(e) {
+        e.stopPropagation(); // Prevent triggering player click
+        const gameId = $(this).data('game-id');
+        window.location.href = `edit-game.html?id=${gameId}`;
     });
 });

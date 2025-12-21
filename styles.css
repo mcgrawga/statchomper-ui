@@ -328,6 +328,14 @@ body {
     color: white;
     padding: 12px 15px;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.game-info {
+    flex: 1;
 }
 
 .game-player {
@@ -337,6 +345,28 @@ body {
     color: #ffffff;
     letter-spacing: 0.5px;
 }
+
+.edit-game-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.edit-game-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.edit-game-btn:active {
+    transform: scale(0.95);
+}
+
 
 .game-date {
     font-size: 0.9rem;
