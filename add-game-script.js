@@ -380,7 +380,11 @@ $(document).ready(function() {
         $('#error-message').hide();
     }
     
-    // Set today's date as default
-    const today = new Date().toISOString().split('T')[0];
-    $('#date-played').val(today);
+    // Set today's date as default (using local timezone)
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const todayLocal = `${year}-${month}-${day}`;
+    $('#date-played').val(todayLocal);
 });

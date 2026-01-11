@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../statchomper"
+		},
+		{
+			"path": "../statchomper-ui-mobile"
 		}
 	],
 	"settings": {
