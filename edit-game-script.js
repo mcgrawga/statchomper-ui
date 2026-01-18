@@ -319,7 +319,8 @@ $(document).ready(function() {
         
         // Disable submit button to prevent multiple submissions
         const submitButton = $('.btn-submit');
-        submitButton.prop('disabled', true);
+        const originalButtonHtml = submitButton.html();
+        submitButton.prop('disabled', true).html('<span class="submit-icon">⏳</span> Saving...');
         
         // Submit to API with x-www-form-urlencoded format using PUT
         $.ajax({
@@ -333,17 +334,14 @@ $(document).ready(function() {
             data: $.param({ Body: smsBody }),
             success: function(response) {
                 console.log('Game updated successfully:', response);
-                showSuccess();
-                setTimeout(function() {
-                    // Store player name in sessionStorage for one-time use
-                    sessionStorage.setItem('expandPlayer', playerName);
-                    // Redirect to home page
-                    window.location.href = 'home.html';
-                }, 2000);
+                // Store player name in sessionStorage for one-time use
+                sessionStorage.setItem('expandPlayer', playerName);
+                // Redirect to home page
+                window.location.href = 'home.html';
             },
             error: function(xhr, status, error) {
                 // Re-enable submit button on error
-                submitButton.prop('disabled', false);
+                submitButton.prop('disabled', false).html(originalButtonHtml);
                 
                 console.error('Error updating game:', xhr, status, error);
                 console.error('Response text:', xhr.responseText);
