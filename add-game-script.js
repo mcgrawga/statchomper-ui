@@ -37,6 +37,8 @@ $(document).ready(function() {
             $('#new-player-input').show();
             $('#new-player-name').attr('required', true);
             $('#player-select').removeAttr('required');
+            // Focus on the new player name input
+            $('#new-player-name').focus();
         } else {
             // Hide new player input field
             $('#new-player-input').hide();
